@@ -1,7 +1,14 @@
 import React from "react";
+import styled from "styled-components";
+
+const Error = styled.span`
+    font-weight: bold;
+    font-size: 30px;
+    color: red;
+`;
 
 const ErrorMessage = () => {
-    return <span>Something goes wrong</span>
+    return <Error>Something goes wrong</Error>
 }
 
 export default ErrorMessage;

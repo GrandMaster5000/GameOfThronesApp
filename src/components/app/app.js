@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import ItemList from '../itemList';
-import CharDetails from '../charDetails';
+import CharacterPage from '../characterPage';
 import ButtonToggle from '../toggleBtn';
 import ErrorMessage from '../errorMessage';
 
@@ -11,7 +10,6 @@ import ErrorMessage from '../errorMessage';
 export default class App extends Component {  
     state = {
         charActive:true,
-        selectedChar: 130,
         error: false
     };
 
@@ -24,12 +22,6 @@ export default class App extends Component {
         this.setState({
             charActive: !this.state.charActive
         });
-    }
-
-    onCharSelected = (id) => {
-        this.setState({
-            selectedChar: id
-        })
     }
 
     render() {
@@ -52,15 +44,7 @@ export default class App extends Component {
                             <ButtonToggle onToggleChar={this.onToggleChar}/>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col md='6'>
-                            <ItemList 
-                            onCharSelected={this.onCharSelected}/>
-                        </Col>
-                        <Col md='6'>
-                            <CharDetails charId={this.state.selectedChar}/>
-                        </Col>
-                    </Row>
+                    <CharacterPage/>
                 </Container>
             </>
         );
