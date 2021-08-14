@@ -84,9 +84,9 @@
   .loadingio-spinner-spin-vhyprh598u {
     width: 200px;
     height: 200px;
-    display: inline-block;
+    display: block;
     overflow: hidden;
-    background: #f1f2f3;
+    margin: 0 auto;
   }
   .ldio-d3sfoq6svr {
     width: 100%;
