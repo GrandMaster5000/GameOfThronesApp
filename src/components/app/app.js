@@ -5,11 +5,20 @@ import RandomChar from '../randomChar';
 import ItemList from '../itemList';
 import CharDetails from '../charDetails';
 import ButtonToggle from '../toggleBtn';
+import ErrorMessage from '../errorMessage';
 
 
 export default class App extends Component {  
     state = {
-        charActive:true
+        charActive:true,
+        selectedChar: 130,
+        error: false
+    };
+
+    componentDidCatch() {
+        this.setState({
+            error: true
+        })
     }
     onToggleChar = () => {
         this.setState({
@@ -17,10 +26,20 @@ export default class App extends Component {
         });
     }
 
+    onCharSelected = (id) => {
+        this.setState({
+            selectedChar: id
+        })
+    }
+
     render() {
         const {charActive} = this.state;
 
         const charContent = charActive ? <RandomChar/> : null;
+
+        if(this.state.error) {
+            return <ErrorMessage/>
+        }
         return (
             <> 
                 <Container>
@@ -35,10 +54,11 @@ export default class App extends Component {
                     </Row>
                     <Row>
                         <Col md='6'>
-                            <ItemList />
+                            <ItemList 
+                            onCharSelected={this.onCharSelected}/>
                         </Col>
                         <Col md='6'>
-                            <CharDetails />
+                            <CharDetails charId={this.state.selectedChar}/>
                         </Col>
                     </Row>
                 </Container>
