@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import CharacterPage from '../characterPage';
+import CharacterPage from '../pages/characterPage';
+import BookPage from '../pages/bookPage';
+import HousePage from '../pages/housePage';
 import ButtonToggle from '../toggleBtn';
 import ErrorMessage from '../errorMessage';
 
@@ -45,6 +47,8 @@ export default class App extends Component {
                         </Col>
                     </Row>
                     <CharacterPage/>
+                    <BookPage/>
+                    <HousePage/>
                 </Container>
             </>
         );

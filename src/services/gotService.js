@@ -24,22 +24,23 @@ export default class GotService {
     }
 
     getAllBooks = async () => {
-        const res = this.getResource('/books?page=5&pageSize=10');
+        const res = await this.getResource('/books');
         return res.map(this._transformBook);
     }
 
     getBook = async (id) => {
-        const res = this.getResource(`/books/${id}`);
+        const res = await this.getResource(`/books/${id}`);
         return this._transformBook(res);
     }
 
     getAllHouses= async () => {
-        const res = this.getResource('/houses?page=5&pageSize=10');
+        const res = await this.getResource('/houses');
+        console.log(res);
         return res.map(this._transformHouse);
     }
 
     getHouse= async (id) => {
-        const res = this.getResource(`/houses/${id}`);
+        const res = await this.getResource(`/houses/${id}`);
         return this._transformHouse(res);
     }
 
@@ -69,7 +70,7 @@ export default class GotService {
     _transformBook = (book) => {
         return {
             name: book.name || 'Not info',
-            numberOfPage: book.numberOfPage || 'Not info',
+            numberOfPages: book.numberOfPages || 'Not info',
             publiser: book.publiser || 'Not info',
             released: book.released || 'Not info',
             id: this._extractId(book)

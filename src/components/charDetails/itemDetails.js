@@ -23,7 +23,7 @@ const SelectError = styled.span`
 `;
 
 
-const Field = ({item, field, label}) => {
+const Field = ({item, field, label, link}) => {
     return (
         <li className="list-group-item d-flex justify-content-between">
             <Term className="term">{label}</Term>
