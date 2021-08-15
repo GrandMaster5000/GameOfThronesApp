@@ -7,6 +7,8 @@ import BookPage from '../pages/bookPage';
 import HousePage from '../pages/housePage';
 import ButtonToggle from '../toggleBtn';
 import ErrorMessage from '../errorMessage';
+import BooksItem from '../pages/booksItemPage';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
 export default class App extends Component {  
@@ -35,22 +37,28 @@ export default class App extends Component {
             return <ErrorMessage/>
         }
         return (
-            <> 
-                <Container>
-                    <Header />
-                </Container>
-                <Container>
-                    <Row>
-                        <Col lg={{size: 5, offset: 0}}>
-                            {charContent}
-                            <ButtonToggle onToggleChar={this.onToggleChar}/>
-                        </Col>
-                    </Row>
-                    <CharacterPage/>
-                    <BookPage/>
-                    <HousePage/>
-                </Container>
-            </>
+            <Router>
+                <div className='app'> 
+                    <Container>
+                        <Header />
+                    </Container>
+                    <Container>
+                        <Row>
+                            <Col lg={{size: 5, offset: 0}}>
+                                {charContent}
+                                <ButtonToggle onToggleChar={this.onToggleChar}/>
+                            </Col>
+                        </Row>
+
+                        <Route path='/characters' component={CharacterPage}/>
+                        <Route path='/houses' component={HousePage}/>
+                        <Route path='/books' exact component={BookPage}/>
+                        <Route path='/books/:id' render={({match}) => {
+                        const {id} = match.params;
+                        return <BooksItem bookId={id}/>}}/>
+                    </Container>
+                </div>
+            </Router>
         );
     }
 };
