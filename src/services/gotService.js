@@ -44,35 +44,39 @@ export default class GotService {
         return this._transformHouse(res);
     }
 
+    checkData = (data) => {
+        return !data ? 'Not info' : data;
+    }
+
     _transformCharacter = (char) => {
         return {
-            name: char.name || 'Not info',
-            gender: char.gender || 'Not info',
-            born: char.born || 'Not info',
-            died: char.born || 'Not info',
-            culture: char.cultures || 'Not info' ,
+            name: this.checkData(char.name),
+            gender: this.checkData(char.gender),
+            born: this.checkData(char.born),
+            died: this.checkData(char.born),
+            culture: this.checkData(char.cultures) ,
             id: this._extractId(char)
         }
     }
 
     _transformHouse = (house) => {
         return {
-            name: house.name || 'Not info',
-            region: house.region || 'Not info',
-            words: house.words || 'Not info',
-            titles: house.titles || 'Not info',
-            overlord: house.overlord || 'Not info',
-            ancestralWeapons: house.ancestralWeapons || 'Not info',
+            name: this.checkData(house.name),
+            region: this.checkData(house.region),
+            words: this.checkData(house.words),
+            titles: this.checkData(house.titles[0]),
+            overlord: this.checkData(house.overlord),
+            ancestralWeapons: this.checkData(house.ancestralWeapons[0]),
             id: this._extractId(house)
         }
     }
 
     _transformBook = (book) => {
         return {
-            name: book.name || 'Not info',
-            numberOfPages: book.numberOfPages || 'Not info',
-            publiser: book.publiser || 'Not info',
-            released: book.released || 'Not info',
+            name: this.checkData(book.name),
+            numberOfPages: this.checkData(book.numberOfPages),
+            publiser: this.checkData(book.publiser),
+            released: this.checkData(book.released),
             id: this._extractId(book)
         }
     }
