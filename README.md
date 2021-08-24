@@ -1,4 +1,4 @@
-Project Name: Mini Twiter
+Project Name: GOT DB
 =====================
 ***Stack:***
 * HTML
